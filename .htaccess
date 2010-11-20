@@ -1,0 +1,12 @@
+php_flag magic_quotes_gpc off
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^/$ system/index.php
+
+RewriteRule ^pagelet/(.*)/(.*)$ system/index.php?pagelet=$1&$2 [QSA,L]
+
+RewriteCond %{REQUEST_URI} !^/assets
+RewriteRule ^(.*)$ system/index.php?page=$1 [QSA,L]
